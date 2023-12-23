@@ -5,7 +5,6 @@ import { CustomError } from "../../../appError/custom-error.model";
 const model = new Model();
 
 type Tasks = {
-    users_id_users: string;
     title: string;
     description: string;
     time: number;
@@ -13,24 +12,34 @@ type Tasks = {
 };
 
 type Users = {
+    password_hash: string;
     id_users: string;
     name_users: string;
     email_users: string;
     permission: string;
-    password_hash: string;
     tasks: Tasks[];
 };
 
 type Response = Either<CustomError, Users[]>;
 
 export const getAllData = async (): Promise<Response> => {
-    const users = await model.users.findMany({
+    const users: Users[] = await model.users.findMany({
         include: {
-            tasks: true,
+            tasks: {
+                select: {
+                    idtasks: true,
+                    title: true,
+                    description: true,
+                    time: true,
+                },
+            },
         },
     });
-
     if (!users) return left(new CustomError("Users not found", 400));
+
+    for (const user of users) {
+        delete user.password_hash;
+    }
 
     return right(users);
 };
