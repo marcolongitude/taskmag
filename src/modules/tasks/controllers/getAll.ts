@@ -20,6 +20,6 @@ export const getAll = async (
         });
     }
 
-    return response.status(200).json({ data: result });
+    return response.status(result.status).json({ data: result.value });
 };
 

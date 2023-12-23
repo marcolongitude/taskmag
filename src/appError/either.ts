@@ -17,8 +17,12 @@ export class Left<L, R> {
 
 export class Right<L, R> {
     readonly value: R;
+    readonly status: number;
+    readonly statusCreate: number;
     constructor(value: R) {
         this.value = value;
+        this.status = 200;
+        this.statusCreate = 201;
     }
 
     isLeft(): this is Left<L, R> {

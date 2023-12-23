@@ -4,35 +4,34 @@ import { PrismaClient as Model } from "@prisma/client";
 import { CustomError } from "../../../appError/custom-error.model";
 const model = new Model();
 
-type IResponse = {
+type Tasks = {
     users_id_users: string;
     title: string;
     description: string;
     time: number;
-    idtask: string;
+    idtasks: string;
 };
 
-type Response = Either<CustomError, IResponse[]>;
+type Users = {
+    id_users: string;
+    name_users: string;
+    email_users: string;
+    permission: string;
+    password_hash: string;
+    tasks: Tasks[];
+};
+
+type Response = Either<CustomError, Users[]>;
 
 export const getAllData = async (): Promise<Response> => {
-    const listTasks = await model.tasks.findMany({
+    const users = await model.users.findMany({
         include: {
-            users: true,
+            tasks: true,
         },
     });
 
-    if (!listTasks) return left(new CustomError("Users not found", 400));
+    if (!users) return left(new CustomError("Users not found", 400));
 
-    const tasks: IResponse[] = listTasks.map((task) => {
-        return {
-            users_id_users: task.users_id_users,
-            title: task.title,
-            description: task.description,
-            time: task.time,
-            idtask: task.idtasks,
-        };
-    });
-
-    return right(tasks);
+    return right(users);
 };
 
