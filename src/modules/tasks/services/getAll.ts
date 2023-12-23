@@ -1,5 +1,4 @@
 import { Either, left, right } from "../../../appError/either";
-import * as yup from "yup";
 import { PrismaClient as Model } from "@prisma/client";
 import { CustomError } from "../../../appError/custom-error.model";
 const model = new Model();

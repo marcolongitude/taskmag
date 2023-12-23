@@ -1,4 +1,3 @@
-/* eslint-disable import-helpers/order-imports */
 import cors from "cors";
 import express from "express";
 
