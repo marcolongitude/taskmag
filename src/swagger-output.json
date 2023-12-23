@@ -1,0 +1,203 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "TASKS - ADM",
+    "description": "Listagem de tarefas com data/tempo",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User",
+      "description": "Endpoints"
+    },
+    {
+      "name": "Login",
+      "description": "Endpoints"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para obter todos os usuários.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para criar um usuário.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name_users": {
+                  "example": "any"
+                },
+                "email_users": {
+                  "example": "any"
+                },
+                "permission": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/id/{id_users}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para buscar usuário por id.",
+        "parameters": [
+          {
+            "name": "id_users",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/email/{email_users}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para buscar usuário por id.",
+        "parameters": [
+          {
+            "name": "email_users",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/{id_users}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para atualizar um usuário.",
+        "parameters": [
+          {
+            "name": "id_users",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name_users": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para deletar um usuário.",
+        "parameters": [
+          {
+            "name": "id_users",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/session/": {
+      "post": {
+        "tags": [
+          "Login"
+        ],
+        "description": "Endpoint para criar uma sessão.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

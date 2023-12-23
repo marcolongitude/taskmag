@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id_users      String           @id @unique(map: "id_users_UNIQUE") @db.VarChar(50)
+  name_users    String           @db.VarChar(100)
+  email_users   String           @unique(map: "email_users_UNIQUE") @db.VarChar(95)
+  permission    users_permission
+  password_hash String           @db.VarChar(100)
+}
+
+enum users_permission {
+  super
+  admin
+  comum
+}
