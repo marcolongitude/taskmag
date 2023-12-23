@@ -13,6 +13,10 @@
       "description": "Endpoints"
     },
     {
+      "name": "Tasks",
+      "description": "Endpoints"
+    },
+    {
       "name": "Login",
       "description": "Endpoints"
     }
@@ -235,6 +239,133 @@
             "description": "OK"
           }
         }
+      }
+    },
+    "/tasks/": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para buscar todas as tasks.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para criar uma tarefa.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "time": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/tasks/id/{id_tasks}": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para buscar tasks por usuario logado.",
+        "parameters": [
+          {
+            "name": "id_tasks",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/tasks/{idtasks}": {
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para atualizar uma tarefa.",
+        "parameters": [
+          {
+            "name": "idtasks",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "time": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     }
   }

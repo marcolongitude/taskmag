@@ -16,6 +16,10 @@ const doc = {
             description: "Endpoints",
         },
         {
+            name: "Tasks",
+            description: "Endpoints",
+        },
+        {
             name: "Login",
             description: "Endpoints",
         },
@@ -34,5 +38,7 @@ const outputFile = "./src/swagger-output.json";
 
 const routes = ["./src/routes/index.ts"];
 
-swaggerAutogen(outputFile, routes, doc);
+swaggerAutogen(outputFile, routes, doc).then(() => {
+    require("./src/server.ts");
+});
 

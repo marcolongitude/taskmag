@@ -139,6 +139,10 @@ export const deleteUserId = async (
     }] */
     const { id_users } = request.params;
 
+    console.log("req body");
+    console.log(request.body);
+    console.log("req body");
+
     const result = await deleteUserById({ id_users });
 
     if (result.isLeft()) {
