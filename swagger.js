@@ -20,22 +20,14 @@ const doc = {
             description: "Endpoints",
         },
     ],
-    // securityDefinitions: {
-    //     api_key: {
-    //         type: "apiKey",
-    //         name: "api_key",
-    //         in: "header",
-    //     },
-    //     petstore_auth: {
-    //         type: "oauth2",
-    //         authorizationUrl: "https://petstore.swagger.io/oauth/authorize",
-    //         flow: "implicit",
-    //         scopes: {
-    //             read_pets: "read your pets",
-    //             write_pets: "modify pets in your account",
-    //         },
-    //     },
-    // },
+    securityDefinitions: {
+        apiKeyAuth: {
+            type: "apiKey",
+            in: "header", // can be 'header', 'query' or 'cookie'
+            name: "Authorization", // name of the header, query parameter or cookie
+            description: "Some description...",
+        },
+    },
 };
 
 const outputFile = "./src/swagger-output.json";
@@ -43,6 +35,4 @@ const outputFile = "./src/swagger-output.json";
 const routes = ["./src/routes/index.ts"];
 
 swaggerAutogen(outputFile, routes, doc);
-
-// swaggerAutogen()(outputFile, routes, doc);
 

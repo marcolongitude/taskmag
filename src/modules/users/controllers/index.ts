@@ -15,6 +15,9 @@ export const getUsers = async (
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para obter todos os usuários.'
+    /* #swagger.security = [{
+            "apiKeyAuth": []
+    }] */
     const result = await getUsersData();
 
     if (result.isLeft()) {
@@ -33,6 +36,9 @@ export const getUserById = async (
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para buscar usuário por id.'
+    /* #swagger.security = [{
+            "apiKeyAuth": []
+    }] */
     const { id_users } = request.params;
 
     const result = await getUserByIdData({ id_users });
@@ -53,6 +59,9 @@ export const getUserEmail = async (
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para buscar usuário por id.'
+    /* #swagger.security = [{
+            "apiKeyAuth": []
+    }] */
     const { email_users } = request.params;
 
     const result = await getUserByEmailData({ email_users });
@@ -73,6 +82,9 @@ export const updateUserId = async (
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para atualizar um usuário.'
+    /* #swagger.security = [{
+            "apiKeyAuth": []
+    }] */
     const { id_users } = request.params;
     const { name_users } = request.body;
 
@@ -94,6 +106,9 @@ export const createUser = async (
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para criar um usuário.'
+    /* #swagger.security = [{
+            "apiKeyAuth": []
+    }] */
     const { name_users, email_users, permission, password } = request.body;
 
     const result = await createUserData({
@@ -119,6 +134,9 @@ export const deleteUserId = async (
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para deletar um usuário.'
+    /* #swagger.security = [{
+            "apiKeyAuth": []
+    }] */
     const { id_users } = request.params;
 
     const result = await deleteUserById({ id_users });

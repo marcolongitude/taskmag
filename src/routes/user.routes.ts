@@ -8,8 +8,11 @@ import {
     getUsers,
     createUser,
 } from "../modules/users/controllers";
+import authMiddleware from "../middlewares/authMiddleware";
 
 const usersRoutes = express.Router();
+
+usersRoutes.use(authMiddleware("sac"));
 
 usersRoutes.get("/", getUsers);
 
