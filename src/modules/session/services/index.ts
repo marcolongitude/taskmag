@@ -9,7 +9,16 @@ import * as yup from "yup";
 
 const model = new Model();
 
-type Response = Either<CustomError, string>;
+type Request = {
+    token: string;
+    user: {
+        id_users: string;
+        name_users: string;
+        email_users: string;
+    };
+};
+
+type Response = Either<CustomError, Request>;
 
 export const setSessionApp = async ({ email, password }): Promise<Response> => {
     const schema = yup.object().shape({
@@ -30,7 +39,8 @@ export const setSessionApp = async ({ email, password }): Promise<Response> => {
         return left(new CustomError("User not found", 400));
     }
 
-    const { name_users, email_users, permission, password_hash } = user;
+    const { id_users, name_users, email_users, permission, password_hash } =
+        user;
 
     const passwordMatched = await checkPassword(password, password_hash);
 
@@ -38,7 +48,22 @@ export const setSessionApp = async ({ email, password }): Promise<Response> => {
         return left(new CustomError("Password does not match", 400));
     }
 
-    const token = createToken({ name_users, email_users, permission });
-    return right(token);
+    const token = createToken({
+        id_users,
+        name_users,
+        email_users,
+        permission,
+    });
+
+    const response = {
+        token,
+        user: {
+            id_users,
+            name_users,
+            email_users,
+        },
+    };
+
+    return right(response);
 };
 

@@ -20,7 +20,7 @@ type Response = Either<CustomError, Tasks[]>;
 
 export const getByUserData = async ({
     id_users,
-}: Request): Promise<Response> => {
+}: Pick<Request, "id_users">): Promise<Response> => {
     const schema = yup.object().shape({
         id_users: yup.string().required("Id user is required"),
     });

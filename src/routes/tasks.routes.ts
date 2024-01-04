@@ -19,7 +19,7 @@ tasksRoutes.use(authMiddleware("sac"));
 
 tasksRoutes.get("/", getAll);
 
-tasksRoutes.get("/id/:id_tasks", getByUser);
+tasksRoutes.get("/user/:id", getByUser);
 
 // tasksRoutes.get("/email/:email_users", getUserEmail);
 

@@ -6,12 +6,14 @@ import { v4 as uuidv4 } from "uuid";
 
 const model = new Model();
 
-type Task = {
-    title: string;
-    description: string;
-    time: number;
-    userId: string;
-};
+const schema = yup.object({
+    title: yup.string().required(),
+    description: yup.string().required(),
+    time: yup.number().required(),
+    userId: yup.string().min(6).required(),
+});
+
+type Task = yup.InferType<typeof schema>;
 
 type Response = Either<CustomError, Task>;
 
@@ -21,12 +23,6 @@ export const createData = async ({
     time,
     userId,
 }: Task): Promise<Response> => {
-    const schema = yup.object().shape({
-        title: yup.string().required(),
-        description: yup.string().required(),
-        time: yup.number().required(),
-        userId: yup.string().min(6).required(),
-    });
     if (
         !(await schema.isValid({
             title,

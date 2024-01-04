@@ -248,8 +248,8 @@
         ],
         "description": "Endpoint para buscar todas as tasks.",
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -298,7 +298,7 @@
         ]
       }
     },
-    "/tasks/id/{id_tasks}": {
+    "/tasks/user/{id}": {
       "get": {
         "tags": [
           "Tasks"
@@ -306,7 +306,7 @@
         "description": "Endpoint para buscar tasks por usuario logado.",
         "parameters": [
           {
-            "name": "id_tasks",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
