@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { deleteByUserData } from "../services/deleteByUser";
 import { OK } from "../../../util/responseApi";
+import { getTaskById } from "../services/getTaskById";
 
 interface RequestParams {
     idtasks: string;
@@ -17,6 +18,15 @@ export const deleteByUser = async (
     }] */
 
     const { idtasks } = request.params;
+
+    const existsTask = await getTaskById({ idtasks });
+
+    if (existsTask.isLeft()) {
+        return response.status(existsTask.value.statusCode).json({
+            data: existsTask.value.message,
+            statusCode: existsTask.value.statusCode,
+        });
+    }
 
     const result = await deleteByUserData({
         idtasks,

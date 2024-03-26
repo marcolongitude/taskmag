@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { updateByUserData } from "../services/updateByUser";
 import { OK } from "../../../util/responseApi";
+import { getTaskById } from "../services/getTaskById";
 
 export const updateByUser = async (
     request: Request,
@@ -13,6 +14,16 @@ export const updateByUser = async (
     }] */
 
     const { idtasks } = request.params;
+
+    const existsTask = await getTaskById({ idtasks });
+
+    if (existsTask.isLeft()) {
+        return response.status(existsTask.value.statusCode).json({
+            data: existsTask.value.message,
+            statusCode: existsTask.value.statusCode,
+        });
+    }
+
     const { title, description, time, date } = request.body;
 
     const result = await updateByUserData({
