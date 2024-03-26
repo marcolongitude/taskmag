@@ -1,26 +1,25 @@
+import { CREATE } from "../../../util/responseApi";
 import { createData } from "../services/create";
 import { Request, Response } from "express";
 
 export const create = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['Tasks']
     // #swagger.description = 'Endpoint para criar uma tarefa.'
     /* #swagger.security = [{
             "apiKeyAuth": []
     }] */
-    const { title, description, time, userId } = request.body;
-
-    console.log("tasks controller 1");
+    const { title, description, time, userId, date } = request.body;
 
     const result = await createData({
         title,
         description,
         time,
         userId,
+        date,
     });
-    console.log("tasks controller 2");
 
     if (result.isLeft()) {
         return response.status(result.value.statusCode).json({
@@ -29,6 +28,6 @@ export const create = async (
         });
     }
 
-    return response.status(200).json({ data: result.value });
+    return response.status(201).json(CREATE({ data: result.value }));
 };
 

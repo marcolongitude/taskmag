@@ -10,6 +10,7 @@ type Tasks = {
     title: string;
     description: string;
     time: number;
+    date: string;
 };
 
 type Request = {

@@ -8,10 +8,11 @@ import {
     getUsersData,
     createUserData,
 } from "../services";
+import { OK, CREATE } from "../../../util/responseApi";
 
 export const getUsers = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para obter todos os usuários.'
@@ -27,12 +28,12 @@ export const getUsers = async (
         });
     }
 
-    return response.status(200).json({ data: result });
+    return response.json({ data: result });
 };
 
 export const getUserById = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para buscar usuário por id.'
@@ -50,12 +51,12 @@ export const getUserById = async (
         });
     }
 
-    return response.status(200).json({ data: result });
+    return response.json(OK({ data: result }));
 };
 
 export const getUserEmail = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para buscar usuário por id.'
@@ -73,12 +74,12 @@ export const getUserEmail = async (
         });
     }
 
-    return response.status(200).json({ data: result.value });
+    return response.json(OK({ data: result.value }));
 };
 
 export const updateUserId = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para atualizar um usuário.'
@@ -97,12 +98,12 @@ export const updateUserId = async (
         });
     }
 
-    if (result) return response.status(200).json({ data: result });
+    if (result) return response.json(OK({ data: result }));
 };
 
 export const createUser = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para criar um usuário.'
@@ -125,12 +126,12 @@ export const createUser = async (
         });
     }
 
-    return response.status(200).json({ data: result.value });
+    return response.json(CREATE({ data: result.value }));
 };
 
 export const deleteUserId = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint para deletar um usuário.'
@@ -138,10 +139,6 @@ export const deleteUserId = async (
             "apiKeyAuth": []
     }] */
     const { id_users } = request.params;
-
-    console.log("req body");
-    console.log(request.body);
-    console.log("req body");
 
     const result = await deleteUserById({ id_users });
 
@@ -152,6 +149,6 @@ export const deleteUserId = async (
         });
     }
 
-    return response.status(200).json({ data: result.value });
+    return response.json(OK({ data: result.value }));
 };
 

@@ -11,6 +11,7 @@ const schema = yup.object({
     description: yup.string().required(),
     time: yup.number().required(),
     userId: yup.string().min(6).required(),
+    date: yup.string().required(),
 });
 
 type Task = yup.InferType<typeof schema>;
@@ -22,6 +23,7 @@ export const createData = async ({
     description,
     time,
     userId,
+    date,
 }: Task): Promise<Response> => {
     if (
         !(await schema.isValid({
@@ -29,6 +31,7 @@ export const createData = async ({
             description,
             time,
             userId,
+            date,
         }))
     ) {
         return left(new CustomError("Validate fails", 400));
@@ -41,14 +44,17 @@ export const createData = async ({
             description,
             time,
             users_id_users: userId,
+            date,
         },
     });
 
     return right({
+        idtasks: result.idtasks,
         title: result.title,
         description: result.description,
         time: result.time,
-        userId: result.users_id_users,
+        date: result.date,
+        users_id_users: result.users_id_users,
     });
 };
 

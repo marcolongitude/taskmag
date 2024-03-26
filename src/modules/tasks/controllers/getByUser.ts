@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { getByUserData } from "../../tasks/services/getByUser";
+import { OK } from "../../../util/responseApi";
 
 export const getByUser = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['Tasks']
     // #swagger.description = 'Endpoint para buscar tasks por usuario logado.'
@@ -17,10 +18,9 @@ export const getByUser = async (
     if (result.isLeft()) {
         return response.status(result.value.statusCode).json({
             data: result.value.message,
-            statusCode: result.value.statusCode,
         });
     }
 
-    return response.status(200).json({ data: result });
+    return response.json(OK({ data: result.value }));
 };
 

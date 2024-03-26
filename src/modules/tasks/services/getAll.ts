@@ -8,6 +8,7 @@ type Tasks = {
     description: string;
     time: number;
     idtasks: string;
+    date: string;
 };
 
 type Users = {
@@ -30,6 +31,7 @@ export const getAllData = async (): Promise<Response> => {
                     title: true,
                     description: true,
                     time: true,
+                    date: true,
                 },
             },
         },

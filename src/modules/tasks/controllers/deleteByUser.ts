@@ -1,26 +1,25 @@
 import { Request, Response } from "express";
-import { updateByUserData } from "../services/updateByUser";
+import { deleteByUserData } from "../services/deleteByUser";
 import { OK } from "../../../util/responseApi";
 
-export const updateByUser = async (
+interface RequestParams {
+    idtasks: string;
+}
+
+export const deleteByUser = async (
     request: Request,
     response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['Tasks']
-    // #swagger.description = 'Endpoint para atualizar uma tarefa.'
+    // #swagger.description = 'Endpoint para deletar uma tarefa.'
     /* #swagger.security = [{
             "apiKeyAuth": []
     }] */
 
     const { idtasks } = request.params;
-    const { title, description, time, date } = request.body;
 
-    const result = await updateByUserData({
+    const result = await deleteByUserData({
         idtasks,
-        title,
-        description,
-        time,
-        date,
     });
 
     if (result.isLeft()) {

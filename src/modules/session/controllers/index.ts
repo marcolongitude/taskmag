@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { setSessionApp } from "../services";
+import { OK } from "../../../util/responseApi";
 
 export const SessionController = async (
     request: Request,
-    response: Response
+    response: Response,
 ): Promise<Response> => {
     // #swagger.tags = ['Login']
     // #swagger.description = 'Endpoint para criar uma sessão.'
@@ -17,6 +18,6 @@ export const SessionController = async (
         });
     }
 
-    return response.status(200).json({ data: result.value });
+    return response.json(OK({ data: result.value }));
 };
 

@@ -158,9 +158,9 @@ export const createUserData = async ({
 
     const password_hash = await bcrypt.hash(password, 8);
 
-    const user = await getUserByEmailData({ email_users });
+    // const user = await getUserByEmailData({ email_users });
 
-    if (user) return left(new CustomError("User already exists", 400));
+    // if (user) return left(new CustomError("User already exists", 400));
 
     const result = await model.users.create({
         data: {
@@ -177,6 +177,7 @@ export const createUserData = async ({
         name_users: result.name_users,
         email_users: result.email_users,
         permission: result.permission,
+        password: result.password_hash,
     });
 };
 

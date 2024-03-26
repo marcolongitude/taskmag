@@ -41,22 +41,6 @@
   ],
   "paths": {
     "/users/": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "Endpoint para obter todos os usuários.",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
-      },
       "post": {
         "tags": [
           "User"
@@ -85,6 +69,22 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para obter todos os usuários.",
         "responses": {
           "200": {
             "description": "OK"
@@ -281,6 +281,9 @@
                 },
                 "userId": {
                   "example": "any"
+                },
+                "date": {
+                  "example": "any"
                 }
               }
             }
@@ -313,8 +316,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -350,6 +353,9 @@
                   "example": "any"
                 },
                 "time": {
+                  "example": "any"
+                },
+                "date": {
                   "example": "any"
                 }
               }

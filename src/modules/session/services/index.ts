@@ -25,15 +25,16 @@ export const setSessionApp = async ({ email, password }): Promise<Response> => {
         email: yup.string().email().required(),
         password: yup.string().min(6).required(),
     });
+
+    if (!(await schema.isValid({ email, password }))) {
+        return left(new CustomError("Validate fails", 400));
+    }
+
     const user: IUser = await model.users.findUnique({
         where: {
             email_users: email,
         },
     });
-
-    if (!(await schema.isValid({ email, password }))) {
-        return left(new CustomError("Validate fails", 400));
-    }
 
     if (!user) {
         return left(new CustomError("User not found", 400));

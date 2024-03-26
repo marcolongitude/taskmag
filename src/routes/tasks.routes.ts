@@ -12,6 +12,7 @@ import {
     getAll,
 } from "../modules/tasks/controllers";
 import authMiddleware from "../middlewares/authMiddleware";
+import { deleteByUser } from "../modules/tasks/controllers/deleteByUser";
 
 const tasksRoutes = express.Router();
 
@@ -21,11 +22,9 @@ tasksRoutes.get("/", getAll);
 
 tasksRoutes.get("/user/:id", getByUser);
 
-// tasksRoutes.get("/email/:email_users", getUserEmail);
-
 tasksRoutes.put("/:idtasks", updateByUser);
 
-// tasksRoutes.delete("/:id_users", deleteUserId);
+tasksRoutes.delete("/:idtasks", deleteByUser);
 
 tasksRoutes.post("/", create);
 

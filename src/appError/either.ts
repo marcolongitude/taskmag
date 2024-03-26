@@ -2,7 +2,7 @@ export type Either<L, R> = Left<L, R> | Right<L, R>;
 
 export class Left<L, R> {
     readonly value: L;
-    constructor(value: L) {
+    constructor(value: L, statusCode?: number) {
         this.value = value;
     }
 
@@ -17,12 +17,8 @@ export class Left<L, R> {
 
 export class Right<L, R> {
     readonly value: R;
-    readonly status: number;
-    readonly statusCreate: number;
     constructor(value: R) {
         this.value = value;
-        this.status = 200;
-        this.statusCreate = 201;
     }
 
     isLeft(): this is Left<L, R> {
