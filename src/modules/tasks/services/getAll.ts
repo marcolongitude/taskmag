@@ -9,6 +9,7 @@ type Tasks = {
     time: number;
     idtasks: string;
     date: string;
+    status: "concluido" | "pendente";
 };
 
 type Users = {
@@ -32,6 +33,7 @@ export const getAllData = async (): Promise<Response> => {
                     description: true,
                     time: true,
                     date: true,
+                    status: true,
                 },
             },
         },

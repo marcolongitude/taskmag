@@ -17,13 +17,14 @@ model users {
 }
 
 model tasks {
-  idtasks        String  @id @db.VarChar(50)
-  title          String  @db.VarChar(110)
-  description    String  @db.LongText
+  idtasks        String       @id @db.VarChar(50)
+  title          String       @db.VarChar(110)
+  description    String       @db.LongText
   time           Int
-  users_id_users String  @db.VarChar(50)
-  date           String? @db.VarChar(45)
-  users          users   @relation(fields: [users_id_users], references: [id_users], onDelete: NoAction, onUpdate: NoAction, map: "fk_tasks_users")
+  users_id_users String       @db.VarChar(50)
+  date           String?      @db.VarChar(45)
+  status         tasks_status
+  users          users        @relation(fields: [users_id_users], references: [id_users], onDelete: NoAction, onUpdate: NoAction, map: "fk_tasks_users")
 
   @@index([users_id_users], map: "fk_tasks_users_idx")
 }
@@ -32,4 +33,9 @@ enum users_permission {
   super
   admin
   comum
+}
+
+enum tasks_status {
+  concluido
+  pendente
 }
