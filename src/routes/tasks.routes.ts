@@ -1,11 +1,6 @@
 import express from "express";
 
 import {
-    // deleteUserId,
-    // updateUserId,
-    // getUserEmail,
-    // getUserById,
-    // getUsers,
     getByUser,
     create,
     updateByUser,
@@ -13,6 +8,7 @@ import {
 } from "../modules/tasks/controllers";
 import authMiddleware from "../middlewares/authMiddleware";
 import { deleteByUser } from "../modules/tasks/controllers/deleteByUser";
+import { updateStatusTasks } from "../modules/tasks/controllers/updateStatusTasks";
 
 const tasksRoutes = express.Router();
 
@@ -25,6 +21,8 @@ tasksRoutes.get("/user/:id", getByUser);
 tasksRoutes.put("/:idtasks", updateByUser);
 
 tasksRoutes.delete("/:idtasks", deleteByUser);
+
+tasksRoutes.put("/:idtasks/status", updateStatusTasks);
 
 tasksRoutes.post("/", create);
 
