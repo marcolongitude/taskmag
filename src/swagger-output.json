@@ -248,8 +248,8 @@
         ],
         "description": "Endpoint para buscar todas as tasks.",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
           }
         },
         "security": [
@@ -290,8 +290,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           }
         },
         "security": [
@@ -316,8 +316,8 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
           }
         },
         "security": [
@@ -356,6 +356,68 @@
                   "example": "any"
                 },
                 "date": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para deletar uma tarefa.",
+        "parameters": [
+          {
+            "name": "idtasks",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/tasks/{idtasks}/status": {
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para atualizar o status da tarefa.",
+        "parameters": [
+          {
+            "name": "idtasks",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
                   "example": "any"
                 }
               }
