@@ -14,22 +14,10 @@ export const updateStatusTasks = async (
             "apiKeyAuth": []
     }] */
 
-    const { idtasks } = request.params;
-
-    const existsTask = await getTaskById({ idtasks });
-
-    if (existsTask.isLeft()) {
-        return response.status(existsTask.value.statusCode).json({
-            data: existsTask.value.message,
-            statusCode: existsTask.value.statusCode,
-        });
-    }
-
-    const { status } = request.body;
+    const { listStatusTasks } = request.body;
 
     const result = await updateStatusTasksService({
-        idtasks,
-        status,
+        listStatusTasks,
     });
 
     if (result.isLeft()) {

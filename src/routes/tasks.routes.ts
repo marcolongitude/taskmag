@@ -13,6 +13,7 @@ import { updateStatusTasks } from "../modules/tasks/controllers/updateStatusTask
 const tasksRoutes = express.Router();
 
 tasksRoutes.use(authMiddleware("sac"));
+tasksRoutes.put("/status", updateStatusTasks);
 
 tasksRoutes.get("/", getAll);
 
@@ -21,8 +22,6 @@ tasksRoutes.get("/user/:id", getByUser);
 tasksRoutes.put("/:idtasks", updateByUser);
 
 tasksRoutes.delete("/:idtasks", deleteByUser);
-
-tasksRoutes.put("/:idtasks/status", updateStatusTasks);
 
 tasksRoutes.post("/", create);
 

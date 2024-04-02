@@ -241,6 +241,16 @@
         }
       }
     },
+    "/tasks/status": {
+      "put": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
     "/tasks/": {
       "get": {
         "tags": [
@@ -384,44 +394,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
-      }
-    },
-    "/tasks/{idtasks}/status": {
-      "put": {
-        "tags": [
-          "Tasks"
-        ],
-        "description": "Endpoint para atualizar o status da tarefa.",
-        "parameters": [
-          {
-            "name": "idtasks",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "example": "any"
-                }
-              }
-            }
           }
         ],
         "responses": {
