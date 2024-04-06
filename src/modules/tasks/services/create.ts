@@ -45,6 +45,7 @@ export const createData = async ({
             time,
             users_id_users: userId,
             date,
+            status: "pendente",
         },
     });
 
