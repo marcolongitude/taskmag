@@ -9,11 +9,14 @@ import {
 import authMiddleware from "../middlewares/authMiddleware";
 import { deleteByUser } from "../modules/tasks/controllers/deleteByUser";
 import { updateStatusTasks } from "../modules/tasks/controllers/updateStatusTasks";
+import { getByUserStatus } from "../modules/tasks/controllers/getByUserStatus";
 
 const tasksRoutes = express.Router();
 
 tasksRoutes.use(authMiddleware("sac"));
 tasksRoutes.put("/status", updateStatusTasks);
+
+tasksRoutes.put("/user/:id/status/:status", getByUserStatus);
 
 tasksRoutes.get("/", getAll);
 

@@ -243,12 +243,66 @@
     },
     "/tasks/status": {
       "put": {
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para atualizar o status da tarefa.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "listStatusTasks": {
+                  "example": "any"
+                }
+              }
+            }
           }
-        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/tasks/user/{id}/status/{status}": {
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para buscar tasks por usuario logado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/tasks/": {
