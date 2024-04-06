@@ -273,38 +273,6 @@
         ]
       }
     },
-    "/tasks/user/{id}/status/{status}": {
-      "put": {
-        "tags": [
-          "Tasks"
-        ],
-        "description": "Endpoint para buscar tasks por usuario logado.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "status",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "apiKeyAuth": []
-          }
-        ]
-      }
-    },
     "/tasks/": {
       "get": {
         "tags": [
@@ -356,6 +324,38 @@
         "responses": {
           "201": {
             "description": "Created"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/tasks/user/{id}/status/{status}": {
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "description": "Endpoint para buscar tasks por usuario logado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         },
         "security": [

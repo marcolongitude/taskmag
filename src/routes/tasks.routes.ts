@@ -16,10 +16,8 @@ const tasksRoutes = express.Router();
 tasksRoutes.use(authMiddleware("sac"));
 tasksRoutes.put("/status", updateStatusTasks);
 
-tasksRoutes.put("/user/:id/status/:status", getByUserStatus);
-
 tasksRoutes.get("/", getAll);
-
+tasksRoutes.get("/user/:id/status/:status", getByUserStatus);
 tasksRoutes.get("/user/:id", getByUser);
 
 tasksRoutes.put("/:idtasks", updateByUser);
